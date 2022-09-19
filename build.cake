@@ -72,4 +72,7 @@ Task("Publish")
         await GitHubActions.Commands.UploadArtifact(data.Artifact, "Swetugg");
  });
 
+ Task("GitHubActions")
+    .IsDependentOn("Publish");
+
 RunTarget(target);
