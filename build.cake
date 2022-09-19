@@ -69,7 +69,10 @@ Task("Package")
 Task("Publish")
      .IsDependentOn("Package")
      .Does<BuildData>(async (ctx, data)=>{
-        await GitHubActions.Commands.UploadArtifact(data.Artifact, "Swetugg");
+        await GitHubActions.Commands.UploadArtifact(
+            data.Artifact,
+            $"Swetugg{ctx.Environment.Platform.Family}"
+            );
  });
 
  Task("GitHubActions")
